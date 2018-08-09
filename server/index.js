@@ -1,10 +1,15 @@
 const Koa = require('koa')
+const mongoose = require('mongoose')
 const views = require('koa-views')
 const { resolve } = require('path')
-const { connect } = require('./database/init')
+const { connect, initSchemas} = require('./database/init')
 
 ;(async () => {
-    await connect()
+    await connect() 
+
+    initSchemas()
+    // require('./tasks/movie')
+    require('./tasks/api')
 })()
 
 const app = new Koa()
